@@ -1,5 +1,4 @@
 const form = document.querySelector("#contact-form");
-form.setAttribute("novalidate", true);
 
 const errorOutput = document.querySelector("#error-output");
 const infoOutput = document.querySelector("#info-output");
@@ -90,10 +89,6 @@ form.addEventListener("submit", (event) => {
     if (field.type === "hidden") continue;
 
     field.setCustomValidity("");
-
-    if (field.name === "name" && !/^[A-Z]/.test(field.value)) {
-        field.setCustomValidity("Name must begin with an uppercase letter.");
-    }
     
 
     if (!field.checkValidity()) {
@@ -119,7 +114,7 @@ form.addEventListener("submit", (event) => {
       });
     }
   }
-  
+
 if (hasErrors) {
     event.preventDefault();
     showError("Please fix the highlighted fields before submitting.");
