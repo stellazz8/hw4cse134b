@@ -665,35 +665,43 @@ input.flash {
 /* part 4 */
 :root[data-theme="light"] {
   --bg: #ffffff;
-  --text: #1a1a1a;
+  --card-bg: #f7f7f7;
+  --text-color: #000000;
   --input-bg: #ffffff;
-  --input-text: #1a1a1a;
-  --border: #ccc;
+  --input-text-color: #000000;
 }
 
 :root[data-theme="dark"] {
-  --bg: #111111;
-  --text: #f5f5f5;
-  --accent: #f1c40f;
-  --input-bg: #1f1f1f;
-  --input-text: #f5f5f5;
-  --border: #666;
+  --bg: #111;
+  --card-bg: #2b2b2b;
+  --text-color: #ffffff;
+  --input-bg: #ffffff;
+  --input-text-color: #000000;
 }
 
 body {
   background: var(--bg);
-  color: var(--fg);
+  color: var(--text-color);
 }
 
-a,
-button {
-  color: var(--accent);
+.form-field label {
+  color: var(--text-color);
+}
+
+input, textarea {
+  background: var(--input-bg);
+  color: var(--input-text-color);
+  border: 1px solid #ccc;
 }
 
 #theme-toggle {
   border-radius: 999px;
   padding: 0.4rem 0.8rem;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--accent-color);
+}
+
+section.form-field {
+  background: var(--card-bg);
 }
 
 
