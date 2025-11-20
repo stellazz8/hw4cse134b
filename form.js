@@ -89,7 +89,7 @@ form.addEventListener("submit", (event) => {
     field.setCustomValidity(""); 
 
     // CUSTOM UPPERCASE CHECK
-    if (field.name === "name" && field.validity.patternMismatch) {
+    if (field.name === "name" && !/^[A-Z]/.test(field.value)) {
       field.setCustomValidity("Name must begin with an uppercase letter.");
     }
 
