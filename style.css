@@ -618,3 +618,28 @@ button[type="submit"] {
   cursor: pointer;
 }
 
+/* Required indicator visually (optional) */
+input[required] + .required-indicator::before {
+  content: "*";
+}
+
+/* Valid / invalid styling */
+input:required:user-invalid,
+textarea:required:user-invalid {
+  border-color: #b00020;
+  background: #ffecec;
+}
+
+input:valid,
+textarea:valid {
+  border-color: #0b6b4b;
+  background: #f1fff8;
+}
+
+/* Placeholder-shown if you want subtle style for untouched fields */
+input:placeholder-shown,
+textarea:placeholder-shown {
+  background: #fafafa;
+}
+
+
