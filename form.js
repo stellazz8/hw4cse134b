@@ -91,11 +91,10 @@ form.addEventListener("submit", (event) => {
 
     field.setCustomValidity("");
 
-    if (field.name === "name") {
-      if (!/^[A-Z]/.test(field.value)) {
+    if (field.name === "name" && !/^[A-Z]/.test(field.value)) {
         field.setCustomValidity("Name must begin with an uppercase letter.");
-      }
     }
+    
 
     if (!field.checkValidity()) {
       hasErrors = true;
@@ -103,12 +102,13 @@ form.addEventListener("submit", (event) => {
       const v = field.validity;
       const errorType = validityToType(v);
 
-      // Optional: custom messages
-      if (v.tooShort) {
-        field.setCustomValidity(`${field.name} is too short.`);
-      } else if (v.valueMissing) {
-        field.setCustomValidity(`${field.name} is required.`);
-      }
+        if (!field.validationMessage || field.validationMessage === "") {
+            if (v.tooShort) {
+            field.setCustomValidity(`${field.name} is too short.`);
+        } else if (v.valueMissing) {
+            field.setCustomValidity(`${field.name} is required.`);
+        }
+    }
 
       thisAttemptErrors.push({
         field: field.name,
@@ -119,17 +119,14 @@ form.addEventListener("submit", (event) => {
       });
     }
   }
-
-  if (hasErrors) {
+  
+if (hasErrors) {
     event.preventDefault();
-
     showError("Please fix the highlighted fields before submitting.");
     formErrors.push(...thisAttemptErrors);
     formErrorsField.value = JSON.stringify(formErrors);
   } else {
-    // Valid submission – still send record of previous errors
     showInfo("Thanks! Your message is being submitted.");
     formErrorsField.value = JSON.stringify(formErrors);
   }
 });
-
