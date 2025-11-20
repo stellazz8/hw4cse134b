@@ -69,7 +69,6 @@ if (textarea && textarea.maxLength > 0) {
   function updateCount() {
     const remaining = max - textarea.value.length;
     commentsInfo.textContent = `${remaining} characters remaining`;
-
     commentsInfo.classList.toggle("warning", remaining <= 30 && remaining >= 0);
     commentsInfo.classList.toggle("error", remaining < 0);
   }
@@ -91,6 +90,12 @@ form.addEventListener("submit", (event) => {
     if (field.type === "hidden") continue;
 
     field.setCustomValidity("");
+
+    if (field.name === "name") {
+      if (!/^[A-Z]/.test(field.value)) {
+        field.setCustomValidity("Name must begin with an uppercase letter.");
+      }
+    }
 
     if (!field.checkValidity()) {
       hasErrors = true;
